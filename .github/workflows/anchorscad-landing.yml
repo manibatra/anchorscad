@@ -1,5 +1,6 @@
 name: build-and-push-anchorscad-landing
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'website/**'
