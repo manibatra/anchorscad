@@ -5,7 +5,7 @@ export function Hero() {
   const SLIDE_COUNT = 5
   const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
   return (
-    <div className="mx-auto flex w-3/4 flex-wrap">
+    <div className="mx-auto flex w-full lg:w-3/4 flex-wrap">
       <div className="relative w-full lg:w-3/4">
         <EmblaCarousel slides={SLIDES} options={OPTIONS} />
       </div>
