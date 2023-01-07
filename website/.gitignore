@@ -30,3 +30,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# anchorscad model files
+/public/models

@@ -1,13 +1,13 @@
 import EmblaCarousel from '@/components/carousel/EmblaCarousel'
 
-export function Hero() {
+
+
+export function Hero({imageFiles}) {
   const OPTIONS = {}
-  const SLIDE_COUNT = 5
-  const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
   return (
     <div className="mx-auto flex w-full lg:w-3/4 flex-wrap">
       <div className="relative w-full lg:w-3/4">
-        <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+        <EmblaCarousel slides={imageFiles} options={OPTIONS} />
       </div>
       <div className="w-full p-[25.6px] lg:w-1/4">
         <ul role="list" className="divide-y divide-gray-200">
@@ -57,3 +57,5 @@ export function Hero() {
     </div>
   )
 }
+
+

@@ -6,8 +6,7 @@ import {
     NextButton,
 } from './EmblaCarouselArrowsDotsButtons'
 
-const EmblaCarousel = (props) => {
-    const { slides, options } = props
+const EmblaCarousel = ({slides, options}) => {
     const [emblaRef, emblaApi] = useEmblaCarousel(options)
     const [prevBtnEnabled, setPrevBtnEnabled] = useState(false)
     const [nextBtnEnabled, setNextBtnEnabled] = useState(false)
@@ -47,14 +46,14 @@ const EmblaCarousel = (props) => {
             <div className="embla">
                 <div className="embla__viewport" ref={emblaRef}>
                     <div className="embla__container">
-                        {slides.map((index) => (
+                        {slides.map((imagePath, index) => (
                             <div className="embla__slide" key={index}>
                                 <div className="embla__slide__number">
                                     <span>{index + 1}</span>
                                 </div>
                                 <img
                                     className="embla__slide__img"
-                                    src="https://cdn.thingiverse.com/assets/92/60/59/1a/c2/featured_preview_1ea4cb47-e396-4711-9dbf-4ef3a43b8c6b.png"
+                                    src={imagePath}
                                     alt="Your alt text"
                                 />
                             </div>
