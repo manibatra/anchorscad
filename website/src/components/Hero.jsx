@@ -1,13 +1,11 @@
 import EmblaCarousel from '@/components/carousel/EmblaCarousel'
 
-
-
-export function Hero({imageFiles}) {
-  const OPTIONS = {}
+export function Hero({ displayFiles }) {
+  const OPTIONS = { draggable: false }
   return (
-    <div className="mx-auto flex w-full lg:w-3/4 flex-wrap">
+    <div className="mx-auto flex w-full flex-wrap lg:w-3/4">
       <div className="relative w-full lg:w-3/4">
-        <EmblaCarousel slides={imageFiles} options={OPTIONS} />
+        <EmblaCarousel slides={displayFiles} options={OPTIONS} />
       </div>
       <div className="w-full p-[25.6px] lg:w-1/4">
         <ul role="list" className="divide-y divide-gray-200">
@@ -57,5 +55,3 @@ export function Hero({imageFiles}) {
     </div>
   )
 }
-
-

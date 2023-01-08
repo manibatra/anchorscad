@@ -6,6 +6,7 @@ import {
   NextButton,
 } from './EmblaCarouselArrowsDotsButtons'
 import { Thumb } from '@/components/carousel/EmblaCarouselThumbsButton'
+import { StlViewer } from 'react-stl-viewer'
 
 const EmblaCarousel = ({ slides, options }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
@@ -17,6 +18,13 @@ const EmblaCarousel = ({ slides, options }) => {
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [scrollSnaps, setScrollSnaps] = useState([])
+
+  const stlViewerStyle = {
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+  }
 
   const scrollPrev = useCallback(
     () => emblaApi && emblaApi.scrollPrev(),
@@ -59,16 +67,30 @@ const EmblaCarousel = ({ slides, options }) => {
           ref={emblaRef}
         >
           <div className="embla__container">
-            {slides.map((imagePath, index) => (
+            {slides.map((displayObjectPath, index) => (
               <div className="embla__slide" key={index}>
                 <div className="embla__slide__number">
                   <span>{index + 1}</span>
                 </div>
-                <img
-                  className="embla__slide__img"
-                  src={imagePath}
-                  alt="Your alt text"
-                />
+                {displayObjectPath.endsWith('.stl') && (
+                  <StlViewer
+                    style={stlViewerStyle}
+                    orbitControls
+                    shadows
+                    url={displayObjectPath}
+                    showAxes={true}
+                    modelProps={{
+                      color: '#0ea5e9',
+                    }}
+                  />
+                )}
+                {displayObjectPath.endsWith('.png') && (
+                  <img
+                    className="embla__slide__img"
+                    src={displayObjectPath}
+                    alt="Your alt text"
+                  />
+                )}
               </div>
             ))}
           </div>
@@ -81,12 +103,12 @@ const EmblaCarousel = ({ slides, options }) => {
       <div className="embla-thumbs">
         <div className="embla-thumbs__viewport" ref={emblaThumbsRef}>
           <div className="embla-thumbs__container">
-            {slides.map((imagePath, index) => (
+            {slides.map((displayObjectPath, index) => (
               <Thumb
                 onClick={() => onThumbClick(index)}
                 selected={index === selectedIndex}
                 index={index}
-                imgSrc={imagePath}
+                imgSrc={displayObjectPath}
                 key={index}
               />
             ))}

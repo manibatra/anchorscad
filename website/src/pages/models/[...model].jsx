@@ -23,15 +23,21 @@ export async function getStaticProps(context) {
       ? path.join('/models/', modelPath)
       : S3_URL + modelPath
   const model = await api.cache.get(modelPath)
-  const imageFiles = model.files.map((file) => basePath + '/' + file)
+  const displayFiles = model.files
+    .map((file) => basePath + '/' + file)
+    .sort(function (a, b) {
+      const extA = a.split('.').pop()
+      const extB = b.split('.').pop()
+      return extA.localeCompare(extB)
+    })
   return {
     props: {
-      imageFiles,
+      displayFiles,
     },
   }
 }
 
-export default function Home({ imageFiles }) {
+export default function Home({ displayFiles }) {
   return (
     <>
       <Head>
@@ -43,7 +49,7 @@ export default function Home({ imageFiles }) {
       </Head>
       <Header />
       <main>
-        <Hero imageFiles={imageFiles} />
+        <Hero displayFiles={displayFiles} />
       </main>
     </>
   )
