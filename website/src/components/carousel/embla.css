@@ -135,8 +135,9 @@
 
 .embla-thumbs {
     --thumbs-slide-spacing: 0.8rem;
-    --thumbs-slide-height: 9rem;
+    /*--thumbs-slide-height: 9rem;*/
     margin-top: var(--thumbs-slide-spacing);
+    padding: 1.6rem;
 }
 .embla-thumbs__viewport {
     overflow: hidden;
