@@ -9,8 +9,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'cdn.thingiverse.com',
-        port: '',
+        hostname: 'anchorscad.s3-ap-southeast-2.amazonaws.com',
       },
     ],
   },
