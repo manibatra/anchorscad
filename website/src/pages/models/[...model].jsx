@@ -17,13 +17,11 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const modelPath = context.params.model.join('/')
+  const S3_URL = 'https://anchorscad.s3-ap-southeast-2.amazonaws.com/'
   const basePath =
     process.env.NODE_ENV === 'development'
       ? path.join('/models/', modelPath)
-      : path.join(
-          'https://anchorscad.s3-ap-southeast-2.amazonaws.com/',
-          modelPath
-        )
+      : S3_URL + modelPath
   const model = await api.cache.get(modelPath)
   const imageFiles = model.files.map((file) => basePath + '/' + file)
   return {
